@@ -1,0 +1,119 @@
+{% extends "base.html" %} {% block title %} Deteksi | KelapaCare {% endblock %}
+{% block content %}
+
+<section class="section container">
+  <h2>Deteksi Penyakit Daun Kelapa</h2>
+
+  <p class="muted">
+    Unggah foto daun kelapa (JPG/PNG). Pastikan bagian daun terlihat jelas agar
+    hasil deteksi lebih akurat.
+  </p>
+
+  <form
+    action="{{ url_for('detect') }}"
+    method="POST"
+    enctype="multipart/form-data"
+    class="upload-form"
+  >
+    <!-- Upload File -->
+
+    <label class="file-box">
+      <input type="file" id="fileInput" name="file" accept="image/*" required />
+
+      <span id="fileName"> 📂 Pilih file atau seret di sini </span>
+    </label>
+
+    <!-- Preview Gambar -->
+
+    <div
+      class="preview-container"
+      id="previewContainer"
+      style="display: none; margin-top: 20px"
+    >
+      <img
+        id="previewImage"
+        src=""
+        alt="Preview"
+        style="
+          width: 300px;
+          max-width: 100%;
+          border-radius: 12px;
+          border: 2px solid #4caf50;
+          padding: 5px;
+        "
+      />
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Deteksi Sekarang</button>
+
+      <a class="btn btn-ghost" href="{{ url_for('history_view') }}">
+        Riwayat
+      </a>
+    </div>
+  </form>
+</section>
+
+<script>
+  const input = document.getElementById("fileInput");
+
+  const fileName = document.getElementById("fileName");
+
+  const preview = document.getElementById("previewImage");
+
+  const previewContainer = document.getElementById("previewContainer");
+
+  input.addEventListener("change", function () {
+    if (this.files.length === 0) {
+      fileName.textContent = "📂 Pilih file atau seret di sini";
+
+      previewContainer.style.display = "none";
+
+      return;
+    }
+
+    const file = this.files[0];
+
+    // Cek format gambar
+
+    if (!file.type.startsWith("image/")) {
+      alert("Silakan pilih file gambar JPG atau PNG.");
+
+      input.value = "";
+
+      fileName.textContent = "📂 Pilih file atau seret di sini";
+
+      previewContainer.style.display = "none";
+
+      return;
+    }
+
+    // Cek ukuran maksimal 5 MB
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Ukuran gambar maksimal 5 MB.");
+
+      input.value = "";
+
+      fileName.textContent = "📂 Pilih file atau seret di sini";
+
+      previewContainer.style.display = "none";
+
+      return;
+    }
+
+    fileName.textContent = "✅ " + file.name;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+      preview.src = e.target.result;
+
+      previewContainer.style.display = "block";
+    };
+
+    reader.readAsDataURL(file);
+  });
+</script>
+
+{% endblock %}

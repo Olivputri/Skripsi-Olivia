@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %} Riwayat | KelapaCare {% endblock %}
+{% block content %}
+
+<section class="section container">
+  <h2>Riwayat Deteksi</h2>
+
+  {% if history %}
+
+  <div class="history-controls">
+    <a
+      href="{{ url_for('delete_history') }}"
+      class="btn btn-danger"
+      onclick="return confirm('Hapus semua riwayat?');"
+    >
+      Hapus Semua
+    </a>
+  </div>
+
+  <div class="history-grid">
+    {% for item in history|reverse %}
+
+    <article class="history-card">
+      <div class="thumb">
+        <img
+          src="{{ url_for('static', filename='uploads/' ~ item.filename) }}"
+          alt="{{ item.filename }}"
+        />
+      </div>
+
+      <div class="meta">
+        <p class="time">{{ item.time }}</p>
+
+        {% if item.label == "bukan_daun_kelapa" %}
+
+        <h3>Bukan Daun Kelapa</h3>
+
+        <p>Gambar tidak sesuai dengan objek daun kelapa.</p>
+
+        {% else %}
+
+        <h3>{{ item.label }}</h3>
+
+        <p>Akurasi: {{ item.confidence }}%</p>
+
+        <p class="suggestion small">{{ item.suggestion }}</p>
+
+        <div class="card-actions">
+          <a
+            class="btn btn-secondary"
+            href="{{ url_for('export_pdf', filename=item.filename) }}"
+          >
+            PDF
+          </a>
+        </div>
+
+        {% endif %}
+      </div>
+    </article>
+
+    {% endfor %}
+  </div>
+
+  {% else %}
+
+  <p class="muted">Belum ada riwayat deteksi.</p>
+
+  {% endif %}
+</section>
+
+{% endblock %}

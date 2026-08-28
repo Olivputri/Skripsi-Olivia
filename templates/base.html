@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}KelapaSehat{% endblock %}</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <div class="logo">KelapaSehat</div>
+
+      <!-- Checkbox Toggle -->
+      <input type="checkbox" id="menu-toggle" />
+
+      <!-- Hamburger -->
+      <label for="menu-toggle" class="hamburger">&#9776;</label>
+
+      <!-- Menu -->
+      <ul class="nav-links">
+        <li><a href="{{ url_for('index') }}">Beranda</a></li>
+        <li><a href="{{ url_for('about') }}">Tentang</a></li>
+        <li><a href="{{ url_for('detect') }}">Deteksi</a></li>
+        <li><a href="{{ url_for('history_view') }}">Riwayat</a></li>
+      </ul>
+    </nav>
+
+    <main class="container">{% block content %}{% endblock %}</main>
+  </body>
+</html>

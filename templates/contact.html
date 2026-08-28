@@ -1,0 +1,85 @@
+{% extends "base.html" %} {% block title %}Kontak | KelapaCare{% endblock %} {%
+block content %}
+<section class="contact-section">
+  <div class="contact-container">
+    <h2 class="contact-title">Hubungi Saya</h2>
+    <p class="contact-subtitle">
+      Jika Anda membutuhkan informasi lebih lanjut terkait sistem deteksi daun
+      kelapa, Anda dapat menghubungi kontak berikut:
+    </p>
+
+    <div class="contact-info-box">
+      <h3>Informasi Kontak</h3>
+      <ul>
+        <li><strong>Nama:</strong> Olivia Putri Kanakang</li>
+        <li><strong>Email:</strong> oliviaputriknk@gmail.com</li>
+        <li><strong>No. Telepon:</strong> 08XXXXXXXXXX</li>
+        <li><strong>Alamat:</strong> Indonesia</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 80px 0;
+    background: #f6fdf8;
+  }
+
+  .contact-container {
+    width: 85%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0a8c18;
+    margin-bottom: 10px;
+  }
+
+  .contact-subtitle {
+    font-size: 1.1rem;
+    color: #444;
+    margin-bottom: 30px;
+  }
+
+  .contact-info-box {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: left;
+  }
+
+  .contact-info-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #0a8c18;
+  }
+
+  .contact-info-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contact-info-box ul li {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .contact-info-box {
+      padding: 25px;
+    }
+
+    .contact-title {
+      font-size: 2rem;
+    }
+  }
+</style>
+{% endblock %}

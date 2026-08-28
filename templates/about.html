@@ -1,0 +1,49 @@
+{% extends "base.html" %} {% block title %}Tentang | KelapaSehat{% endblock %}
+{% block content %}
+<section class="about-section container">
+  <div class="about-header">
+    <h2>Tentang KelapaSehat</h2>
+    <p class="muted">
+      KelapaSehat adalah sistem deteksi hama dan penyakit pada daun kelapa
+      berbasis AI (MobileNetV2). Sistem ini membantu petani, peneliti, dan
+      penggiat pertanian untuk mengidentifikasi gangguan pada daun secara cepat,
+      akurat, dan memberikan rekomendasi penanganan yang sesuai.
+    </p>
+  </div>
+
+  <div class="about-highlight">
+    Dengan teknologi visi komputer dan machine learning, KelapaSehat dirancang
+    agar dapat digunakan dengan mudah oleh siapa pun, baik untuk keperluan
+    edukasi, riset, maupun monitoring tanaman di lapangan.
+  </div>
+
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>Tujuan</h3>
+      <p>
+        Meningkatkan efisiensi monitoring tanaman, meminimalisir kerusakan
+        akibat hama atau penyakit, serta mempermudah petani mendapatkan diagnosa
+        awal secara otomatis.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>Metode</h3>
+      <p>
+        Model mendeteksi pola visual pada daun kelapa menggunakan CNN
+        (MobileNetV2) yang dilatih dari dataset terverifikasi. Proses analisis
+        terjadi saat pengguna mengunggah foto daun.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>Penggunaan</h3>
+      <p>
+        Cocok digunakan untuk petani, penelitian kampus, pengawasan kebun,
+        hingga keperluan edukasi. Sistem bekerja cepat, ringan, dan dapat
+        diakses melalui berbagai perangkat.
+      </p>
+    </div>
+  </div>
+</section>
+{% endblock %}

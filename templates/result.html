@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block title %} Hasil Deteksi | KelapaCare {%
+endblock %} {% block content %}
+
+<section class="section container result-wrap">
+  <h2>Hasil Deteksi</h2>
+
+  <div class="result-grid">
+    <div class="img-col">
+      <img src="{{ image_url }}" alt="Uploaded image" class="result-img" />
+    </div>
+
+    <div class="info-col">
+      {% if label == "bukan_daun_kelapa" %}
+
+      <p>
+        <strong>Hasil:</strong>
+        <span class="tag"> Bukan Daun Kelapa </span>
+      </p>
+
+      <p>
+        <strong>Tingkat Keyakinan:</strong>
+        {{ confidence }}%
+      </p>
+
+      <p>
+        <strong>Keterangan:</strong>
+      </p>
+
+      <p class="suggestion">
+        Gambar yang diunggah tidak sesuai dengan objek daun kelapa. Silakan
+        unggah foto daun kelapa agar sistem dapat melakukan deteksi hama atau
+        penyakit.
+      </p>
+
+      {% else %}
+
+      <p>
+        <strong>Prediksi:</strong>
+
+        <span class="tag"> {{ label }} </span>
+      </p>
+
+      <p>
+        <strong>Akurasi:</strong>
+        {{ confidence }}%
+      </p>
+
+      <p>
+        <strong>Saran:</strong>
+      </p>
+
+      <p class="suggestion">{{ suggestion }}</p>
+
+      {% endif %}
+
+      <div class="result-actions">
+        {% if label != "bukan_daun_kelapa" %}
+
+        <a
+          class="btn btn-secondary"
+          href="{{ url_for('export_pdf', filename=filename) }}"
+        >
+          Unduh PDF
+        </a>
+
+        {% endif %}
+
+        <a class="btn btn-primary" href="{{ url_for('detect') }}">
+          Deteksi Lagi
+        </a>
+
+        <a class="btn btn-ghost" href="{{ url_for('history_view') }}">
+          Lihat Riwayat
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
